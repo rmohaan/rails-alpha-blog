@@ -1,21 +1,23 @@
-<h1>Showing article details</h1>
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @article.description %>
-</p>
-
-<p>
-  <strong>Genre:</strong>
-  <%= @article.genre %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<%= render 'shared/success', notice: notice %>
+<div class="row mt-3 justify-content-center">
+  <h3>Showing article details</h3>
+  <div class="col-12 ">
+    <div class="card">
+      <div class="h3 card-header text-center">
+        <strong><%= @article.title %></strong>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <div><%= simple_format(@article.description) %></div>
+          <footer class="blockquote-footer">Created in the <cite title="Genre"><%= @article.genre %></cite> genre before <%= time_ago_in_words(@article.created_at) %></footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="row">
+      <div class="d-flex col-12 justify-content-center">
+        <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-success m-2" %> 
+        <%= link_to 'Back', articles_path, class: "btn btn-primary m-2" %>
+      </div>
+    </div>
+  </div>
+</div>

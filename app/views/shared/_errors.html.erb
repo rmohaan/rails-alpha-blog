@@ -1,0 +1,18 @@
+<% if @article.errors.any? %>
+	<div class="alert alert-danger alert-dismissable fade show" role="alert">
+		<h4 class="alert-heading">
+			<%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+		</h4>
+		<hr/>
+		<p>
+			<ul>
+				<% @article.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</p>
+	</div>
+<% end %>

@@ -1,0 +1,61 @@
+@import "bootstrap";
+  html,
+  body {
+      height: 100%;
+      background-color: lightgray;
+  }
+
+  #card-container {
+    margin-top: 25px;
+  }
+
+  .card-style {
+      min-height: 260px;
+      max-height: 260px;
+  }
+
+  .card-text {
+    max-height: 38px;
+    min-height: 35px;
+    overflow: inherit;
+    text-overflow: ellipsis;
+  }
+
+  .navbar {
+    background-color: black !important;
+    height: 50px;
+  }  
+
+  .nav-link {
+    color: white !important;
+  }
+
+  #jumbotron-form {
+      margin-top: 50px;
+  }
+
+  #home-jumbotron {
+      background-image: asset-url('bg.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 500px;
+  }
+    
+  .navbar-brand {  
+    color: white !important;
+    font-size: 1.5rem;
+  }
+
+  #home-h1 {
+      margin-top: 150px;
+  }
+
+  #page-content {
+    flex: 1 0 auto;
+  }
+
+  #sticky-footer {
+      flex-shrink: none;
+  }
+
