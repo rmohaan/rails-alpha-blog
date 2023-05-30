@@ -4,7 +4,7 @@
   <div class="col-12 ">
     <div class="card">
       <div class="h3 card-header text-center">
-        <strong><%= @article.title %></strong>
+        <strong><q><%= @article.title %></strong></q> by <cite title="user"> <%= @article.user.username %></cite>
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">

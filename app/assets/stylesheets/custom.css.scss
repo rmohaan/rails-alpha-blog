@@ -21,6 +21,12 @@
     text-overflow: ellipsis;
   }
 
+  .card-header {
+    max-height: 55px;
+    text-overflow: ellipsis;
+    overflow: overlay;
+  }
+
   .navbar {
     background-color: black !important;
     height: 50px;

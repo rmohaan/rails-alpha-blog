@@ -3,8 +3,8 @@
     <% @articles.each do |article| %>
       <div class="col-6">
         <div class="card card-style text-center mt-2 mb-2 shadow mb-5 bg-white rounded">
-          <div class="card-header mh-20">
-            <%= link_to article.title, article_path(article), class: "h3 text-success" %>
+          <div class="card-header">
+            <%= link_to "#{article.title} by #{article.user.username}" , article_path(article), class: "h3 text-success" %>
           </div>
           <div class="card-body mh-60">
             <h5 class="card-title">
