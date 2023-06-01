@@ -6,9 +6,12 @@
 
 <%= gravatar_for @user, size: 400 %>
 
-<div class="row justify-content-center mt-3">
-  <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-outline-primary" %>
-</div>
+<%if logged_in? && logged_user == @user %>
+  <div class="row justify-content-center mt-3">
+    <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-outline-primary" %>
+    <%= link_to "Delete Profile", user_path(@user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger mx-2" %>
+  </div>
+<% end %>
 
 <div class="row justify-content-center mt-3">
   <h3>Articles </h3>
@@ -17,6 +20,7 @@
     <%= will_paginate @articles, :container => false %>
   </div>
   <%= render 'articles/cards', articles: @articles %>
+
   <div class="flickr_pagination">
     <%= will_paginate @articles, :container => false %>
   </div>

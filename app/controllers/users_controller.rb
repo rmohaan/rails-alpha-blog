@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :edit, :show]
-	
+  before_action :set_user, only: [:update, :edit, :show, :destroy]
+  before_action :require_user, only: [:edit, :update]
+	before_action :require_same_user, only: [:edit, :update, :destroy]
+
 	# GET /articles or /articles.json
   def index
     @users = User.paginate(page: params[:page], per_page: 3)
@@ -9,6 +11,10 @@ class UsersController < ApplicationController
 	def new
     @user = User.new
   end
+
+  def show
+		@articles = @user.articles.paginate(page: params[:page], per_page: 5)
+	end
 
 	# POST /users or /users.json
 	def create
@@ -42,10 +48,17 @@ class UsersController < ApplicationController
 			end
 		end
 	end
-	
-	def show
-		@articles = @user.articles.paginate(page: params[:page], per_page: 5)
-	end
+
+	# DELETE /user/1 or /users/1.json
+  def destroy
+    @user.destroy
+		session[:user_id] = nil
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "User was successfully deleted." }
+      format.json { head :no_content }
+    end
+  end
 
 	private
 	def user_params
@@ -56,4 +69,11 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def require_same_user
+		debugger
+		if logged_user != @user
+			flash[:notice] = "You are not permitted to perform this operation"
+			redirect_to logged_user
+		end
+	end
 end

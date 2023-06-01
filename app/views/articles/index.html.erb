@@ -3,9 +3,15 @@
   <div class="col-6 pl-5">
     <h3>Showing all articles</h3> 
   </div>
-  <div class="col-6 pr-5">
-    <%= link_to "Create new article", new_article_path, class: "btn btn-success float-right text-white text-decoration-none" %>
-  </div>
+  <% if logged_in? %>
+    <div class="col-6 pr-5">
+      <%= link_to "Create new article", new_article_path, class: "btn btn-success float-right text-white text-decoration-none" %>
+    </div>
+  <% else %>
+    <div class="col-6 pr-5">
+      <%= link_to "Login to create article", login_path, class: "btn btn-success float-right text-white text-decoration-none" %>
+    </div>
+  <% end %>
 </div>
 <hr/>
 <div class="flickr_pagination">
