@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="d-flex col-12 justify-content-center">
-        <% if logged_in? && logged_user ==  @article.user %>
+        <% if logged_in? && (logged_user ==  @article.user || logged_user.admin?) %>
           <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-success m-2" %> 
         <% end %>
         <%= link_to 'Back', articles_path, class: "btn btn-primary m-2" %>

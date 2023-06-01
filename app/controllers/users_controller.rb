@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 	# DELETE /user/1 or /users/1.json
   def destroy
     @user.destroy
-		session[:user_id] = nil
+		session[:user_id] = nil if logged_user == @user
 
     respond_to do |format|
       format.html { redirect_to root_path, notice: "User was successfully deleted." }
@@ -70,8 +70,7 @@ class UsersController < ApplicationController
 	end
 
 	def require_same_user
-		debugger
-		if logged_user != @user
+		if logged_user != @user && !logged_user.admin?
 			flash[:notice] = "You are not permitted to perform this operation"
 			redirect_to logged_user
 		end

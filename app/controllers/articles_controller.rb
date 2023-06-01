@@ -73,7 +73,7 @@ class ArticlesController < ApplicationController
     end
 
     def require_same_user
-      if logged_user != @article.user
+      if !logged_user.admin? && logged_user != @article.user
         flash[:notice] = "You cannot perform this operation"
         redirect_to @article
       end
