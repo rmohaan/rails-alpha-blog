@@ -5,4 +5,11 @@
   </div>
 </div>
 <hr/>
+
+<div class="flickr_pagination">
+    <%= will_paginate @users, :container => false %>
+</div>
 <%= render 'cards', users: @users %>
+<div class="flickr_pagination">
+    <%= will_paginate @users, :container => false %>
+</div>

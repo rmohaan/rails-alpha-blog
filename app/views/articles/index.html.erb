@@ -8,4 +8,10 @@
   </div>
 </div>
 <hr/>
+<div class="flickr_pagination">
+  <%= will_paginate @articles, :container => false %>
+</div>
 <%= render 'cards', articles: @articles %>
+<div class="flickr_pagination">
+  <%= will_paginate @articles, :container => false %>
+</div>

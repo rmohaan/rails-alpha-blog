@@ -1,0 +1,24 @@
+<div id="page-content" class="container">
+  <%= render 'shared/success', notice: notice %>
+  <%= form_with(scope: :session, url: "login", class: "row shadow p-3 mb-5 mt-3 bg-white rounded", local: true) do |form| %>
+    <div class="col-12 justify-content-center mt-3">
+      <div class="col-12">
+        <div class="form-group row">
+          <%= form.label :username, class: "col-2 col-form-label" %>
+          <%= form.text_field :username, class: "form-control col-10 shadow rounded", placeholder: "Enter the username" %>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :password, class: "col-2 col-form-label" %>
+          <%= form.password_field :password, class: "form-control col-10 shadow rounded", placeholder: "Enter the password" %>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+          <%= form.submit "Login", class: "btn btn-success col-1" %>
+          <%= link_to 'Back', articles_path, class: "btn btn-primary col-1 ml-2" %>
+        </div>
+      </div>
+    </div>
+    
+  <% end %>
+</div>
