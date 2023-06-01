@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
 			if @user.save
+				session[:user_id] = @user.id
 				format.html { redirect_to articles_path, notice: @notice  }
 				format.json { render :show, status: :created, location: @article }
 			else

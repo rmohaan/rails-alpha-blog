@@ -29,7 +29,7 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 						<% if logged_in? %>
-            	<%= link_to gravatar_for(@logged_user, size: 40), user_path(@logged_user), class: "my-2 my-sm-0 ml-2" %>
+            	<%= link_to gravatar_for(logged_user, size: 40), user_path(logged_user), class: "my-2 my-sm-0 ml-2" %>
 						<% else %>
 							<%= link_to "Sign up", signup_path, class: "btn btn-outline-success my-2 my-sm-0 ml-2" %>
 						<% end %>
