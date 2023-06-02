@@ -19,12 +19,13 @@ class UsersController < ApplicationController
 	# POST /users or /users.json
 	def create
 		@user = User.new(user_params)
-		@notice = "User creation is successful, welcome #{@user.username}"
-
+		
 		respond_to do |format|
 			if @user.save
+				flash[:notice] = "User creation is successful, welcome #{@user.username}"
+				flash[:success] = true
 				session[:user_id] = @user.id
-				format.html { redirect_to articles_path, notice: @notice  }
+				format.html { redirect_to articles_path }
 				format.json { render :show, status: :created, location: @article }
 			else
 				format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +41,9 @@ class UsersController < ApplicationController
 	def update
 		respond_to do |format|
 			if @user.update(user_params)
-				format.html { redirect_to user_path, notice: "User was successfully updated." } 
+				flash[:notice] = "User was successfully updated."
+				flash[:success] = true 
+				format.html { redirect_to user_path } 
 				format.json { render :show, status: :ok, location: @article }
 			else
 				format.html { render :edit, status: :unprocessable_entity }
@@ -53,9 +56,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
 		session[:user_id] = nil if logged_user == @user
+		flash[:notice] = "User was successfully deleted."
+		flash[:success] = true 
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "User was successfully deleted." }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
@@ -72,6 +77,7 @@ class UsersController < ApplicationController
 	def require_same_user
 		if logged_user != @user && !logged_user.admin?
 			flash[:notice] = "You are not permitted to perform this operation"
+			flash[:success] = false 
 			redirect_to logged_user
 		end
 	end

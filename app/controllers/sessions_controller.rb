@@ -10,9 +10,11 @@ class SessionsController < ApplicationController
 				session[:user_id] = user.id
 				@notice = "User logged in successfully"
 				flash[:notice] = "User logged in successfully"
-				redirect_to user, notice: @notice
+				flash[:success] = true
+				redirect_to user
 			else
 				flash.now[:notice] = "Login failed"
+				flash.now[:success] = false
 				render "new"
 			end
 	end
@@ -20,6 +22,7 @@ class SessionsController < ApplicationController
 	def destroy
 		session[:user_id] = nil
 		flash[:notice] = "Logged out successfully"
+		flash[:success] = true
 		redirect_to root_path
 	end
 end
