@@ -22,8 +22,8 @@ class CategoryTest < ActiveSupport::TestCase
 		assert_not @category2.valid?
 	end
 
-	test "name should not more than 15 chars" do
-		@category.name = "1234567890123456"
+	test "name should not more than 25 chars" do
+		@category.name = "12345678901234567890123456"
 		assert_not @category.valid?
 	end
 

@@ -1,0 +1,13 @@
+<%= render 'shared/success', notice: flash[:notice], success: flash[:success] %>
+<div class="row mt-3">
+  <div class="col-6 pl-5">
+    <h3>Showing all categories</h3> 
+  </div>
+</div>
+<div class="flickr_pagination">
+  <%= will_paginate @categories, :container => false %>
+</div>
+<%= render 'cards', categories: @categories %>
+<div class="flickr_pagination">
+  <%= will_paginate @categories, :container => false %>
+</div>
