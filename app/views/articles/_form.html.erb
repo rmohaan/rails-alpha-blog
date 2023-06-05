@@ -18,6 +18,15 @@
           <%= form.text_field :genre, class: "form-control col-10 shadow rounded", placeholder: "Enter the genre of the article" %>
         </div>
 
+        <div class="form-group row">
+          <%= form.label :category_ids, "Categories", class: "col-2 col-form-label" %>
+          <div class="col-sm-8 ml-n4">
+            <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+              <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox mx-2") + cb.text } %>
+            <% end %>
+          </div>
+        </div>
+
         <div class="row justify-content-center mb-3">
           <%= form.submit "Submit", class: "btn btn-success col-1" %>
           <%= link_to 'Back', articles_path, class: "btn btn-primary col-1 ml-2" %>

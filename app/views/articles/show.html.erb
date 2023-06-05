@@ -3,8 +3,21 @@
   <h3>Showing article details</h3>
   <div class="col-12 ">
     <div class="card">
-      <div class="h3 card-header text-center">
-        <strong><q><%= @article.title %></strong></q> by <cite title="user"> <%= link_to @article.user.username, user_path(@article.user) %></cite>
+      <div class="card-header text-center">
+        <div class="h3">
+          <strong><q><%= @article.title %></strong></q> 
+          by 
+          <cite title="user"> 
+            <%= link_to @article.user.username, user_path(@article.user) %>
+          </cite>
+        </div>
+        <div class = "row justify-content-center text-center">
+          <% @article.categories.each do |category| %>
+            <span class="badge rounded-pill bg-success mx-1 my-1 px-3">
+              <%= link_to "#{category.name}", category_path(category), class: "text-white text-decoration-none font-italic" %>
+            </span>
+          <% end %>
+        </div>
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">

@@ -5,13 +5,21 @@
         <div class="card text-center mt-2 mb-2 shadow mb-5 bg-white rounded">
           <div class="card-header">
             <%= link_to "#{article.title} by #{article.user.username}" , article_path(article), class: "h5 text-success" %>
+            <div class = "row justify-content-center  text-center">
+              <% article.categories.each do |category| %>
+                <span class="badge rounded-pill bg-success mx-1 my-1 px-3">
+                  <%= link_to "#{category.name}", category_path(category), class: "text-white text-decoration-none font-italic" %>
+                </span>
+              <% end %>
+            </div>
           </div>
           <div class="card-body mh-60">
             <h5 class="card-title">
                 <%= article.genre %>
             </h5>
+            
             <p class="card-text">
-                <%= truncate(article.description, length: 100) %>
+              <%= truncate(article.description, length: 100) %>
             </p>
             <%= link_to "Read Full Article", article_path(article),class: "btn btn-outline-success" %>
             <% if logged_in? && (logged_user == article.user || logged_user.admin?) %>
